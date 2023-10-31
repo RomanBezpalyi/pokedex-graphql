@@ -1,0 +1,17 @@
+.loading {
+  position: fixed;
+  right: calc(20vw - 20px);
+  bottom: 50vh;
+  height: 60px;
+  filter: brightness(80%);
+  animation: rotatePokeBall ease-in-out 3s infinite;
+
+  &:global( .center ) {
+    right: 60vw;
+  }
+}
+
+@keyframes rotatePokeBall {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,191 @@
+.pokemonCard {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+  margin: 6vh 10px 10px;
+  height: 82vh;
+  right: calc(10vw - 20px);
+  padding: 0 15px;
+  bottom: 0;
+  margin-bottom: 0;
+  border-radius: 20px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: white;
+  box-shadow: #EDEDED 0 10px 10px;
+  text-align: center;
+}
+
+.pokemon {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 79vh;
+  margin-right: auto;
+  margin-left: auto;
+  object-fit: contain;
+  image-rendering: pixelated;
+  max-width: 350px;
+  max-height: 20vh;
+  height: 100%;
+}
+
+.cardInfo {
+  font-size: 18px;
+  color: #8F9396;
+  margin: 0 20%;
+}
+
+.number {
+  font-size: 12px;
+  font-weight: bold;
+  color: #8F9396;
+}
+
+.name {
+  color: #011030;
+  margin: 5px;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 1.5em;
+}
+
+.type {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 3px 7px;
+  color: black;
+  margin: 5px;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.title {
+  color: #011030;
+  margin: 5px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.description {
+  color: #8F9396;
+}
+
+.stats,
+.parameters,
+.abilities,
+.evolution {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.parameter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  margin: 5px;
+}
+
+.value {
+  width: 100%;
+  background-color: #F6F8FC;
+  padding: 8px 0;
+  border-radius: 30px;
+  margin: 5px;
+}
+
+.statsWrapper,
+.abilitiesWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.stat {
+  background: #F6F8FC;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+  border-radius: 30px;
+  margin: 5px;
+  height: 54px;
+
+  &:last-of-type {
+    background: #88AAEA;
+  }
+}
+
+.statTitle {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.statValue {
+  margin: 6px 0;
+}
+
+.sprite {
+  height: 74px;
+  width: 74px;
+  cursor: pointer;
+  border-radius: 30%;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+}
+
+.evolutionLevel {
+  width: 50px;
+  background-color: #F6F8FC;
+  padding: 8px 0;
+  border-radius: 30px;
+  margin: 5px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.slideOut {
+  animation: slideOut ease-in-out 0.35s forwards;
+}
+
+@keyframes slideOut {
+  0% {right: calc(10vw - 20px)}
+  100% {right: -400px}
+}
+
+.slideIn {
+  animation: slideIn ease-in-out 0.35s forwards;
+}
+
+@keyframes slideIn {
+  0% {right: -400px}
+  100% {right: calc(10vw - 20px)}
+}

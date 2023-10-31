@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 30px 10px;
+  border-radius: 20px;
+  box-shadow: #EDEDED 0 10px 10px;
+  padding: 15px;
+  background-color: white;
+  width: 65%;
+  margin-right: 350px;
+}
+
+.input {
+  border: none;
+  outline: none;
+  font-size: 18px;
+  flex: 1;
+}
+
+.button {
+  background-color: #FF5350;
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: #ff535088 5px 5px 15px;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    opacity: 0.8;
+    box-shadow: #ff53509c 3px 3px 13px;
+  }
+
+  svg {
+    fill: #fff;
+    width: 20px;
+    height: 20px;
+  }
+}
