@@ -85,7 +85,9 @@ const mapPokemonDescription = ( description: TPokemonDescriptionApi ) => descrip
 const mapPokemonEvolutionLine = ( id: number, evolutionLine: TEvolutionLineSpecyApi[] ) => {
   const mappedEvolutions = evolutionLine
     .map( ( { id, pokemon_v2_pokemonevolutions } ) => ({ id, minLevel: pokemon_v2_pokemonevolutions[0]?.min_level }) );
-  if (id < 133 || id > 136 ) return mappedEvolutions;
+  // Check for Hitmonchan and Hitmonlee
+  if (id === 106 || id === 107) return mappedEvolutions.filter( ( { id: evoId } ) => evoId === id );
+  if (id < 133 || id > 136) return mappedEvolutions;
   // Check for the eevee-lutions. Non-linear evolution line
   return mappedEvolutions.filter( ( { id: evoId } ) => ( id === 133 ? evoId === id + 1 : evoId === 133 ) || evoId === id );
 };

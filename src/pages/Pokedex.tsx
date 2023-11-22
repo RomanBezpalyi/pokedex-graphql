@@ -31,7 +31,7 @@ export const Pokedex = () => {
   const onScroll = () => {
     if ( !inputValue ) {
       if ( scrollRef.current
-        && Math.ceil(scrollRef.current.scrollTop + scrollRef.current.offsetHeight) >= scrollRef.current.scrollHeight - 1.5 ) {
+        && Math.ceil(scrollRef.current.scrollTop + scrollRef.current.offsetHeight) >= scrollRef.current.scrollHeight - 0.5 ) {
           if ( !pokemonList.find( ( { id }) => id === KANTO_ENTRIES_AMOUNT) ) {
             setParams( calculateQueryParams( params.limit, params.offset ) );
           }
