@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const KANTO_ENTRIES_AMOUNT = 151;
 const LANGUAGE_ID = 9; // English
@@ -22,13 +22,21 @@ export const loadStatNames = gql`
   }
 `;
 
-export const loadPokemonList = (limit: number, offset: number) => gql`
+export const loadPokemonList = (limit: number = 151, offset: number = 0) => gql`
   query {
     pokemon_v2_pokemon(limit: ${limit}, offset: ${offset}) {
       name
       id
       pokemon_v2_pokemontypes {
         type_id
+      }
+      pokemon_v2_pokemonstats {
+        base_stat
+        pokemon_v2_stat {
+          pokemon_v2_statnames(where: {language_id: {_eq: ${LANGUAGE_ID}}}) {
+            stat_id
+          }
+        }
       }
     }
   }
@@ -74,7 +82,9 @@ export const loadPokemon = (id: number) => gql`
       }
       pokemon_v2_pokemonspecy {
         pokemon_v2_evolutionchain {
-          pokemon_v2_pokemonspecies(where: {id: {_lt: ${KANTO_ENTRIES_AMOUNT + 1}}}) {
+          pokemon_v2_pokemonspecies(where: {id: {_lt: ${
+            KANTO_ENTRIES_AMOUNT + 1
+          }}}) {
             id
             pokemon_v2_pokemonevolutions {
               min_level
@@ -83,6 +93,27 @@ export const loadPokemon = (id: number) => gql`
         }
         pokemon_v2_pokemonspeciesflavortexts(where: {language_id: {_eq: ${LANGUAGE_ID}}, version_id: {_eq: ${VERSION_ID}}}) {
           flavor_text
+        }
+      }
+    }
+  }
+`;
+
+export const loadFusionPokemonList = () => gql`
+  query {
+    pokemons {
+      pokemons {
+        _id
+        name
+        types
+        parentIds
+        stats {
+          attack
+          defense
+          spAttack
+          spDefense
+          speed
+          hp
         }
       }
     }

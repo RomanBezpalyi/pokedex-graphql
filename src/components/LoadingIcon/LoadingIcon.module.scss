@@ -9,6 +9,10 @@
   &:global( .center ) {
     right: 60vw;
   }
+
+  &:global(.fusion-loader) {
+    right: 50vw;
+  }
 }
 
 @keyframes rotatePokeBall {

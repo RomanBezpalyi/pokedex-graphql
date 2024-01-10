@@ -15,21 +15,20 @@
   background-color: white;
   box-shadow: #EDEDED 0 10px 10px;
   transition-duration: 100ms;
-  cursor: pointer;
-
-  &:hover {
-    border: 2px solid #e0e0e0;
-  }
 }
 
 .sprite {
   position: absolute;
-  top: -55px;
+  top: -50px;
   image-rendering: pixelated;
   transition-duration: 100ms;
 
-  .pokemonListItem:hover & {
-    transform: scale(1.15);
+  &:first-of-type {
+    left: 0;
+  }
+
+  &:last-of-type {
+    right: 0;
   }
 }
 
@@ -56,4 +55,41 @@
   font-weight: 600;
   font-size: 14px;
   opacity: 0.8;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.stat {
+  background: #F6F8FC;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+  border-radius: 30px;
+  margin: 5px 2px 0;
+  height: 54px;
+}
+
+.statTitle {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.statValue {
+  margin: 6px 0;
 }

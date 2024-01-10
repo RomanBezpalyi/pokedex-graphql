@@ -1,6 +1,6 @@
 import { TTypeName, TPokemonTypeId } from '../types/typings';
 
-type TPokemonStat = {
+export type TPokemonStat = {
   value: number;
   id: number;
 }

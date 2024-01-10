@@ -22,45 +22,45 @@ const calculateQueryParams = getQueryParams(BASE_LIMIT);
 
 export const Pokedex = () => {
   const dispatch = useDispatch();
-  const [params, setParams] = useState<TQueryParams>(calculateQueryParams( limit, offset ));
+  const [params, setParams] = useState<TQueryParams>(calculateQueryParams(limit, offset));
   const [inputValue, setInputValue] = useState('');
-  const [shouldShowCard, setShouldShowCard] = useState( true )
-  const scrollRef = useRef<HTMLDivElement | null>( null );
-  const pokemonList = useSelector( selectPokemonList );
+  const [shouldShowCard, setShouldShowCard] = useState(true)
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const pokemonList = useSelector(selectPokemonList);
 
   const onScroll = () => {
-    if ( !inputValue ) {
-      if ( scrollRef.current
-        && Math.ceil(scrollRef.current.scrollTop + scrollRef.current.offsetHeight) >= scrollRef.current.scrollHeight - 0.5 ) {
-          if ( !pokemonList.find( ( { id }) => id === KANTO_ENTRIES_AMOUNT) ) {
-            setParams( calculateQueryParams( params.limit, params.offset ) );
-          }
+    if (!inputValue) {
+      if (scrollRef.current
+        && Math.ceil(scrollRef.current.scrollTop + scrollRef.current.offsetHeight) >= scrollRef.current.scrollHeight - 0.5) {
+        if (!pokemonList.find(({ id }) => id === KANTO_ENTRIES_AMOUNT)) {
+          setParams(calculateQueryParams(params.limit, params.offset));
         }
+      }
     }
   };
 
   const onInputChange = (e: any) => {
-    setInputValue( e.target.value );
+    setInputValue(e.target.value);
   };
 
-  useEffect( () => {
-    if ( !inputValue ) {
-      setParams( calculateQueryParams( limit, offset ) );
-      dispatch( setPokemonList( [] ) );
+  useEffect(() => {
+    if (!inputValue) {
+      setParams(calculateQueryParams(limit, offset));
+      dispatch(setPokemonList([]));
     }
-  }, [inputValue, dispatch] );
+  }, [inputValue, dispatch]);
 
   const { data: pokemonListData, loading } = useQuery(
     inputValue
-    ? loadPokemonListByQuery( inputValue )
-    : loadPokemonList( params.limit, params.offset )
+      ? loadPokemonListByQuery(inputValue)
+      : loadPokemonList(params.limit, params.offset), { context: { clientName: 'pokeapi' } }
   );
 
   useEffect(() => {
     if (pokemonListData) {
       const { pokemon_v2_pokemon: pokemons } = pokemonListData;
-      const pokemonList = mapPokemonList( pokemons );
-      dispatch( inputValue ? setPokemonList( pokemonList ) : updatePokemonList( pokemonList ) );
+      const pokemonList = mapPokemonList(pokemons);
+      dispatch(inputValue ? setPokemonList(pokemonList) : updatePokemonList(pokemonList));
     }
   }, [pokemonListData, dispatch, inputValue]);
 
@@ -69,7 +69,7 @@ export const Pokedex = () => {
       <div className='pokedex'>
         <SearchBar value={inputValue} onChange={onInputChange} />
         {loading && !pokemonList.length && <LoadingIcon className='center' />}
-        {!!pokemonList.length && <PokedexDashboard ref={scrollRef} onScroll={onScroll}/>}
+        {!!pokemonList.length && <PokedexDashboard ref={scrollRef} onScroll={onScroll} />}
         <LoadingIcon />
         <PokemonCard />
       </div>

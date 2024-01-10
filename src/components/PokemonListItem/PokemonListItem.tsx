@@ -6,7 +6,7 @@ import { TPokemon } from '../../store/list/typings';
 import { setActivePokemonId } from '../../store/pokemon/slice';
 import { selectActivePokemonId } from '../../store/pokemon/selectors';
 import { TYPE_COLORS } from '../../utils';
-import { SPRITE_URL } from '../../';
+import { SPRITE_URL } from '../../api/constants';
 
 import css from './PokemonListItem.module.scss';
 

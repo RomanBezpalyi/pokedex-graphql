@@ -9,17 +9,15 @@ import {
   ApolloProvider,
   HttpLink,
   from,
+  ApolloLink,
 } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 
+import { POKEAPI_URL, SERVER_URL } from './api/constants';
 import store from './store/createStore';
 
 import App from './App';
 import './index.scss';
-
-const API_URL = 'https://beta.pokeapi.co/graphql/v1beta';
-export const SPRITE_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-export const GIF_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/';
 
 const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) {
@@ -29,14 +27,26 @@ const errorLink = onError(({ graphQLErrors }) => {
   }
 })
 
-const link = from([
+const pokeapiUri = new HttpLink({ uri: POKEAPI_URL });
+const serverUri = new HttpLink({ uri: SERVER_URL });
+
+const pokeapiLink = from([
   errorLink,
-  new HttpLink({ uri: API_URL })
+  pokeapiUri,
+])
+
+const serverLink = from([
+  errorLink,
+  serverUri
 ])
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link
+  link: ApolloLink.split(
+    operation => operation.getContext().clientName === 'pokeapi',
+    pokeapiLink,
+    serverLink
+  )
 });
 
 const root = ReactDOM.createRoot(
