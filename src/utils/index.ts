@@ -87,12 +87,17 @@ export const mapPokemonStats = (pokemonStats: TPokemonStat[]) =>
 
 export const mapPokemonList = (pokemonList: TPokemon[]) =>
   pokemonList.map(
-    ({ name, id, pokemon_v2_pokemontypes, pokemon_v2_pokemonstats }) => ({
-      name,
-      id,
-      types: pokemon_v2_pokemontypes!.map(({ type_id }) => type_id),
-      stats: mapPokemonStatValues(pokemon_v2_pokemonstats!),
-    })
+    ({ name, id, pokemon_v2_pokemontypes, pokemon_v2_pokemonstats }) => {
+      const pokemon: TPokemon = {
+        name,
+        id,
+        types: pokemon_v2_pokemontypes!.map(({ type_id }) => type_id),
+      };
+      if (pokemon_v2_pokemonstats) {
+        pokemon.stats = mapPokemonStatValues(pokemon_v2_pokemonstats);
+      }
+      return pokemon;
+    }
   );
 
 const mapPokemonDescription = (description: TPokemonDescriptionApi) =>

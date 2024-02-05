@@ -50,6 +50,7 @@ export const FusionBar = () => {
   const handleCreatePokemon = () => {
     if (!parent1 || !parent2 || parent1.value === parent2.value) {
       toast.error('Select 2 different pokemons to fuse.')
+      return;
     }
     const { stats, ...pokemonData } = getNewPokemonRequestData(parent1Data!, parent2Data!);
     createPokemon({
@@ -105,7 +106,7 @@ export const FusionBar = () => {
       <FusionSelect label='Pokémon 1' options={options} value={parent1} onChange={(value) => setParent1(value)} />
       <span className={css.plus}>+</span>
       <FusionSelect label='Pokémon 2' options={options} value={parent2} onChange={(value) => setParent2(value)} />
-      <button onClick={handleCreatePokemon} className={css.button}>Create a Pokemon</button>
+      <button onClick={handleCreatePokemon} className={css.button}>Create a Pokémon</button>
     </div>
   )
 };

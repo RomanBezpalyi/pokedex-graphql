@@ -18,12 +18,12 @@ export const Fusiondex = () => {
   );
 
   useEffect(() => {
-    if (pokemonListData) {
+    if (pokemonListData && !fusionList.length) {
       const { pokemons: { pokemons } } = pokemonListData;
       const pokemonList = mapFusionList(pokemons);
       dispatch(setFusionList(pokemonList));
     }
-  }, [pokemonListData, dispatch]);
+  }, [pokemonListData, dispatch, fusionList.length]);
 
   return (
     <div className='pokedex'>
